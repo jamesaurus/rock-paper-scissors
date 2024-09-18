@@ -26,14 +26,38 @@ function checkValidChoice(choice) {
     return validChoice.includes(choice);
 }
 
+function resetGame(){
+    playerScore = 0;
+    computerScore = 0;
+    document.getElementById("player-score").innerHTML = `Player: ${playerScore}`;
+    document.getElementById("computer-score").innerHTML = `Computer: ${computerScore}`;
+}
+
+function checkWinCondition(){;
+    if (playerScore == "5") { 
+        alert("Congratulations! You win!");  
+        resetGame();
+        return; 
+    }
+    if (computerScore == "5") 
+    { 
+        alert("Computer wins! better luck next time."); 
+        resetGame();
+        return;
+    } 
+    return; // no winner yet
+}
+
 function updateScore(winner) {
     if (winner === "player") { 
         playerScore++;
         document.getElementById("player-score").innerHTML = `Player: ${playerScore}`;
-        return;
-    } 
-    computerScore++;
-    document.getElementById("computer-score").innerHTML = `Computer: ${computerScore}`;
+    } else {
+        computerScore++;
+        document.getElementById("computer-score").innerHTML = `Computer: ${computerScore}`;
+    }
+
+    setTimeout(() => checkWinCondition(), 20)
 }
 
 function playRound(humanChoice, computerChoice) {
